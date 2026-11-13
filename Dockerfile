@@ -14,6 +14,8 @@ COPY public ./public
 
 COPY src    ./src
 
+ENV NODE_OPTIONS=--max-old-space-size=2048
+ENV GENERATE_SOURCEMAP=false
 RUN npm run build
 
 # 2) Production stage — serve static build via nginx

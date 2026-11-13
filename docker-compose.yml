@@ -1,13 +1,13 @@
-version: '3.8'
-
 services:
   backend:
     build:
-      context: ./backend
+      context: .
+      dockerfile: backend/Dockerfile
     ports:
-      - "8080:8080"
+      - "8080:8000"
     environment:
-      - MONGO_URI=mongodb://localhost:27017/Ecommerce-Products
+      - MONGO_URI=mongodb://mongodb:27017/Ecommerce-Products
+      - JWT_SECRET=change_this_secret
     depends_on:
       - mongodb
 
@@ -23,3 +23,8 @@ services:
     image: mongo:6.0
     ports:
       - "27017:27017"
+    volumes:
+      - mongo_data:/data
+
+volumes:
+  mongo_data:
